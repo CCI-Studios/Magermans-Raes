@@ -1,0 +1,20 @@
+name = Magermans & Raes
+description = Magermans & Raes Custom
+core = 7.x
+
+scripts[] = js/bg.js
+scripts[] = js/menu.js
+scripts[] = js/menu-button.js
+scripts[] = js/brokers-widget.js
+
+stylesheets[all][] = stylesheets/screen.css
+
+regions[navigation] = Navigation
+regions[header] = Header
+regions[help] = Help
+regions[content] = Content
+regions[sidebar_first] = Sidebar
+regions[widgets] = Widgets
+regions[widgets2] = Widgets2
+regions[footer] = Footer
+
