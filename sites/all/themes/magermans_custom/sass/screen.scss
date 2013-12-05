@@ -7,7 +7,7 @@
 	     url('../fonts/TeX-Gyre-Heros/texgyreheroscn-bold-webfont.svg#webfont') format('svg');
 }
 
-$helvetica: "HelveticaNeue-CondensedBold", "Helvetica Neue", 'TeX-Gyre-Heros', Helvetica, Arial, sans-serif;
+$helvetica: "HelveticaNeue-CondensedBold", 'TeX-Gyre-Heros', Helvetica, Arial, sans-serif;
 $century_gothic: "Century Gothic", "ff-basic-gothic-web-pro", Arial, sans-serif;
 
 
@@ -285,7 +285,7 @@ a#logo img
 				& > div,
 				ul
 				{
-					background-color:#2860a9;
+					background-color:#286bb0;
 				}
 
 				a 
@@ -335,7 +335,7 @@ a#logo img
 					background-image:url(../images/icons/advantage.png);
 				}
 			}
-			&.resources
+			&.contactus
 			{
 				&,
 				& > div,
@@ -346,21 +346,49 @@ a#logo img
 
 				a 
 				{
-					background-image:url(../images/icons/resources.png);
+					background-image:url(../images/icons/contact.png);
 				}
 			}
-			&.contactus
+			&.travel
 			{
 				&,
 				& > div,
 				ul
 				{
-					background-color:#258dc6;
+					background-color:#2860a9;
 				}
 
 				a 
 				{
-					background-image:url(../images/icons/contact.png);
+					background-image:url(../images/icons/travel.png);
+				}
+			}
+			&.report
+			{
+				&,
+				& > div,
+				ul
+				{
+					background-color:#2774b6;
+				}
+
+				a 
+				{
+					background-image:url(../images/icons/report.png);
+				}
+			}
+			&.careers
+			{
+				&,
+				& > div,
+				ul
+				{
+					background-color:#267dbc;
+				}
+
+				a 
+				{
+					background-image:url(../images/icons/careers.png);
 				}
 			}
 			&.last
@@ -739,6 +767,11 @@ h1#page-title
 				font-size:14px;
 				font-style:italic;
 				margin-bottom:10px;
+
+				p 
+				{
+					margin-bottom:0.8em;
+				}
 			}
 
 			.views-field-path
@@ -777,6 +810,63 @@ h1#page-title
 		right:1.5%;
 	}
 }
+
+form
+{
+	.form-required
+	{
+		display:none;
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=date],
+	input[type=password],
+	input[type=number]
+	{
+		line-height:24px;
+		padding:0 6px;
+		width:180px;
+		font-size:15px;
+		color:#2c318b;
+	}
+
+	input[type=submit],
+	input[type=button],
+	button
+	{
+		background:transparent;
+		border:0;
+		font-size:24px;
+		color:#2592ca;
+		font-weight:bold;
+		text-shadow:1px 1px 1px rgba(0,0,0,0.1);
+		cursor:pointer;
+		font-family:$helvetica;
+	}
+
+	.webform-component 
+	{
+		clear:left;
+		overflow:hidden;
+	}
+
+	.webform-component-radios .form-item
+	{
+		float:left;
+		margin-right:15px;
+		margin-left:1px;
+	}
+
+	&#user-login
+	{
+		.description
+		{
+			display:none;
+		}
+	}
+}
+
 
 
 
@@ -971,6 +1061,6 @@ body
 #bg-wrapper
 {
 	overflow:hidden;
-	position:absolute;
+	position:fixed;
 	z-index:-1;
 }

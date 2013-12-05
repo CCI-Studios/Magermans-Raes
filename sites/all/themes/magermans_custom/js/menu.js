@@ -39,7 +39,7 @@ function resizeMenu(defaultHeight)
 			}
 			else
 			{
-				console.log("window.height too small");
+				//console.log("window.height too small");
 			}
 		}
 		else
