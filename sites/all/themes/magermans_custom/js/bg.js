@@ -82,9 +82,7 @@ function bgLayout()
 	(function($) {
 		var $img = $("#bg");
 		var pageWidth = $("#page-wrapper").width();
-		var pageHeight = $("#page").height();
-		if (pageHeight < $(window).height())
-			pageHeight = $(window).height();
+		var pageHeight = $(window).height();
 
 		//console.log("pageWidth="+pageWidth+", pageHeight="+pageHeight);
 		//console.log("imgWidth="+$img.width()+", imgHeight="+$img.height());
