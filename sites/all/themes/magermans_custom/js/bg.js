@@ -67,6 +67,34 @@
 		{
 			url += "mraes.jpg";
 		}
+		else if ($body.hasClass("reg-raes"))
+		{
+			url += "rraes.jpg";
+		}
+		else if ($body.hasClass("melinda-bell"))
+		{
+			url += "mbell.jpg";
+		}
+		else if ($body.hasClass("stephanie-bezaire"))
+		{
+			url += "sbezaire.jpg";
+		}
+		else if ($body.hasClass("stephanie-appleton"))
+		{
+			url += "sappleton.jpg";
+		}
+		else if ($body.hasClass("laurie-mercier"))
+		{
+			url += "lmercier.jpg";
+		}
+		else if ($body.hasClass("trish-fisher"))
+		{
+			url += "tfisher.jpg";
+		}
+		else if ($body.hasClass("donna-robertson"))
+		{
+			url += "drobertson.jpg";
+		}
 		else
 		{
 			url += "front.jpg";
@@ -84,54 +112,27 @@ function bgLayout()
 		var pageWidth = $("#page-wrapper").width();
 		var pageHeight = $(window).height();
 
-		//console.log("pageWidth="+pageWidth+", pageHeight="+pageHeight);
-		//console.log("imgWidth="+$img.width()+", imgHeight="+$img.height());
-
 		$("#bg-wrapper").css({
 			width:pageWidth+"px", 
 			height:pageHeight+"px",
 			overflow:"visible"
 		});
 
-		$img.css({"left":"0", "width":pageWidth+"px", "height":"auto"});
+		$img.css({"width":pageWidth+"px", "height":"auto"});
 		if ($img.height() < pageHeight)
 		{
 			$img.css({
 				"height":pageHeight, 
-				"width":"auto",
-				"left":"50%"
+				"width":"auto"
 			});
-			fixBGMargin();
 		}
 		else
 		{
 			$img.css({
-				"left":0,
 				"height":"auto",
-				"margin-left":0
+				"width":"100%"
 			});
 		}
 		$("#bg-wrapper").css("overflow", "hidden");
 	}(jQuery));
 }
-
-function fixBGMargin()
-{
-	(function($) {
-		$img = $("#bg");
-		var imgWidth = $img.width();
-		if (imgWidth <= 1)
-		{
-			setTimeout(fixBGMargin, 10);
-			console.log("fixBGMargin() waiting...");
-			return;
-		}
-
-		//console.log("old imgWidth="+imgWidth);
-		//console.log("new imgWidth="+$img.width());
-		$img.css({
-			"margin-left":"-"+(imgWidth/2)+"px"
-		});
-	}(jQuery));
-}
-

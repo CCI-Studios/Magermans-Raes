@@ -7,7 +7,7 @@
 			.appendTo("#block-system-main-menu .content > ul");
 
 		resizeMenu();
-		$(window).resize(function(){resizeMenu();});
+		$(window).on('resize scroll', function(){resizeMenu();});
 	});
 }(jQuery));
 
@@ -15,36 +15,29 @@
 function resizeMenu(defaultHeight)
 {
 	(function($) {
-		if (defaultHeight == null)
+		var windowHeight = $(window).height();
+		var minLIHeight = 46;
+		var numLI = $("#block-system-main-menu .content > ul > li").length;
+
+		if (windowHeight > minLIHeight * numLI)
 		{
-			var windowHeight = $(window).height();
-			var minLIHeight = 42;
-			var numLI = $("#block-system-main-menu .content > ul > li").length;
-
-			if (windowHeight > minLIHeight * numLI)
+			if (windowHeight % numLI == 0)
 			{
-				if (windowHeight % numLI == 0)
-				{
-					var height = windowHeight / numLI;
-					$("#block-system-main-menu .content > ul > li").height(height+"px");
-				}
-				else
-				{
-					var height = Math.ceil(windowHeight / numLI);
-					$("#block-system-main-menu .content > ul > li").height(height+"px");
-
-					height = height - (numLI - (windowHeight % numLI));
-					$("#block-system-main-menu .content > ul > li").last().height(height+"px");
-				}
+				var height = windowHeight / numLI;
+				$("#block-system-main-menu .content > ul > li").height(height+"px");
 			}
 			else
 			{
-				//console.log("window.height too small");
+				var height = Math.ceil(windowHeight / numLI);
+				$("#block-system-main-menu .content > ul > li").height(height+"px");
+
+				height = height - (numLI - (windowHeight % numLI));
+				$("#block-system-main-menu .content > ul > li").last().height(height+"px");
 			}
 		}
-		else
+		else 
 		{
-			$("#block-system-main-menu .content > ul > li").height(defaultHeight+"px");
+			$("#block-system-main-menu .content > ul > li").height(minLIHeight+"px");
 		}
 
 
@@ -53,7 +46,7 @@ function resizeMenu(defaultHeight)
 			var padding = ($(this).height() - $(this).find("> div > a").height())/2;
 			if ($(this).hasClass("expanded"))
 			{
-				padding = 42/2;
+				padding = minLIHeight/2;
 			}
 			$(this).find("> div > a").css({"padding-top":padding+"px", "padding-bottom":padding+"px"});
 		});

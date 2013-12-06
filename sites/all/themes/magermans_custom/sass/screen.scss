@@ -7,8 +7,17 @@
 	     url('../fonts/TeX-Gyre-Heros/texgyreheroscn-bold-webfont.svg#webfont') format('svg');
 }
 
-$helvetica: "HelveticaNeue-CondensedBold", 'TeX-Gyre-Heros', Helvetica, Arial, sans-serif;
-$century_gothic: "Century Gothic", "ff-basic-gothic-web-pro", Arial, sans-serif;
+@mixin helvetica() {
+	font-family:"HelveticaNeue-CondensedBold", "TeX-Gyre-Heros", Helvetica, Arial, sans-serif;
+	letter-spacing:normal;
+	font-weight:normal;
+}
+$century_gothic: "ff-basic-gothic-web-pro", sans-serif;
+@mixin century_gothic() {
+	font-family:$century_gothic;
+	letter-spacing:-0.6px;
+	font-weight:400;
+}
 
 
 .clearfix:after 
@@ -24,10 +33,10 @@ $century_gothic: "Century Gothic", "ff-basic-gothic-web-pro", Arial, sans-serif;
 
 body 
 {
-	font-weight:300;
-	font-family:$century_gothic;
+	@include century_gothic;
 	color:#2c318b;
 	background-color:white;
+	-webkit-font-smoothing:antialiased;
 }
 
 a,
@@ -40,6 +49,11 @@ li a.active
 a:not([href])
 {
 	text-decoration:none;
+}
+
+tbody 
+{
+	border-top:0;
 }
 
 .clear
@@ -94,6 +108,7 @@ a#logo img
 
 				a 
 				{
+					@include helvetica;
 					display:block;
 					height:100%;
 					padding-left:85px;
@@ -101,8 +116,6 @@ a#logo img
 					color:white;
 					font-size:16px;
 					text-decoration:none;
-					font-family:$helvetica;
-					font-weight:normal;
 					background-repeat:no-repeat;
 					background-position:20px center;
 
@@ -554,11 +567,10 @@ a#logo img
 
 h1#page-title
 {
-	font-family:$helvetica;
+	@include helvetica;
 	font-size:30px;
 	line-height:100%;
 	padding-bottom:12px;
-	margin-bottom:5px;
 	background:url(../images/title-border.png) repeat-x bottom;
 	display:inline-block;
 }
@@ -579,15 +591,29 @@ h1#page-title
 	}
 }
 
-#bg { position: absolute; top: 0; left: 0; width:100%; z-index:-1; }
+#bg
+{
+	position:absolute;
+	top:0;
+	right:0;
+	width:100%;
+	z-index:-1;
+}
 #bg.bgwidth { width: 100%; }
 #bg.bgheight { height: 100%; }
 
 
 #block-system-main 
 {
-	width:40%;
+	width:50%;
 	min-width:300px;
+	padding:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	background-color:rgba(255,255,255,0.6);
+	box-shadow:0 0 15px rgba(0, 8, 49, 0.3);
 
 	p 
 	{
@@ -598,16 +624,25 @@ h1#page-title
 	{
 		margin:0.8em 0 0.8em 20px;
 	}
+
+	.field-name-body .field-item :last-child
+	{
+		margin-bottom:0;
+	}
+}
+.front #block-system-main
+{
+	margin-bottom:0;
 }
 
 #widgets
 {
-	padding-bottom:50px;
-
 	& > div 
 	{
 		display:table;
 		border-spacing:10px;
+		margin-left:-10px;
+		margin-right:-10px;
 
 		& > div
 		{
@@ -617,18 +652,13 @@ h1#page-title
 
 	.block
 	{
-		/*
-		width:32.5%;
-		margin-right:1.25%;
-		float:left;
-		*/
 		display:table-cell;
-
 		background-color:white;
-		background-color:rgba(255,255,255,0.8);
+		background-color:rgba(255,255,255,0.6);
 		box-shadow:0 0 15px rgba(0,8,49,0.3);
 		text-align:center;
 		min-height:100px;
+		width:33%;
 
 		& > div 
 		{
@@ -637,7 +667,7 @@ h1#page-title
 
 		h2 
 		{
-			font-family:$helvetica;
+			@include helvetica;
 			font-size:24px;
 			margin:0 0 10px 0;
 			padding:94px 0 10px 0;
@@ -674,12 +704,13 @@ h1#page-title
 
 		a 
 		{
+			@include helvetica;
 			color:#168ec9;
 			text-decoration:none;
 			font-size:24px;
-			font-family:$helvetica;
 			margin-top:20px;
 			display:block;
+			text-shadow:1px 1px 1px rgba(0,0,0,0.2);
 		}
 	}
 }
@@ -690,8 +721,8 @@ h1#page-title
 
 	#block-block-6
 	{
+		@include helvetica;
 		clear:both;
-		font-family:$helvetica;
 		font-size:24px;
 		color:#2c318b;
 		line-height:50px;
@@ -709,6 +740,7 @@ h1#page-title
 		position:relative;
 		width:100%;
 		overflow:hidden;
+		font-weight:600;
 
 		.view-content
 		{
@@ -734,6 +766,7 @@ h1#page-title
 				width:1px;
 				height:100%;
 				background-color:white;
+				z-index:1;
 			}
 			
 
@@ -755,10 +788,18 @@ h1#page-title
 				}
 			}
 
+			.views-field-title,
+			.views-field-field-short-summary,
+			.views-field-path
+			{
+				position:relative;
+				z-index:1;
+			}
+
 			.views-field-title
 			{
+				@include helvetica;
 				font-size:18px;
-				font-family:$helvetica;
 				margin-bottom:10px;
 			}
 
@@ -785,7 +826,7 @@ h1#page-title
 				position:absolute;
 				top:0;
 				left:0;
-				z-index:-1;
+				z-index:0;
 				width:100%;
 				height:auto;
 			}
@@ -824,25 +865,39 @@ form
 	input[type=password],
 	input[type=number]
 	{
-		line-height:24px;
+		line-height:26px;
 		padding:0 6px;
 		width:180px;
 		font-size:15px;
 		color:#2c318b;
+		background-color:white;
+		background-color:rgba(255,255,255,0.85);
+		border:1px solid #ccc;
+		border-radius:3px;
+	}
+
+	textarea
+	{
+		font-size:15px;
+		color:#2c318b;
+		background-color:white;
+		background-color:rgba(255,255,255,0.85);
+		border:1px solid #ccc;
+		border-radius:3px;
 	}
 
 	input[type=submit],
 	input[type=button],
 	button
 	{
+		@include helvetica;
 		background:transparent;
 		border:0;
 		font-size:24px;
 		color:#2592ca;
 		font-weight:bold;
-		text-shadow:1px 1px 1px rgba(0,0,0,0.1);
+		text-shadow:1px 1px 1px rgba(0,0,0,0.2);
 		cursor:pointer;
-		font-family:$helvetica;
 	}
 
 	.webform-component 
@@ -858,6 +913,11 @@ form
 		margin-left:1px;
 	}
 
+	.form-actions
+	{
+		margin-bottom:0;
+	}
+
 	&#user-login
 	{
 		.description
@@ -866,6 +926,139 @@ form
 		}
 	}
 }
+
+.page-insurance-basics #block-system-main
+{
+	width:auto;
+	min-width:initial;
+	background-color:transparent;
+	box-shadow:none;
+	padding:0;
+
+	.views-row
+	{
+		width:32%;
+		float:left;
+		margin-bottom:15px;
+
+		& > div 
+		{
+			height:275px;
+			padding:25px 20px 25px 20px;
+			background-color:rgba(255,255,255,0.6);
+			box-shadow:0 0 15px rgba(0, 8, 49, 0.3);
+			text-align:center;
+		}
+
+		&.views-col-1,
+		&.views-col-2
+		{
+			margin-right:2%;
+		}
+
+		h2 
+		{
+			@include helvetica;
+			font-size:24px;
+			margin:0 0 10px 0;
+			padding:94px 0 10px 0;
+			border-bottom:1px solid #8fc6e2;
+			background-repeat:no-repeat;
+			background-position:center top;
+
+			a 
+			{
+				text-decoration:none;
+			}
+		}
+	}
+}
+
+.page-brokers #block-system-main
+{
+	width:auto;
+	min-width:initial;
+	background-color:transparent;
+	box-shadow:none;
+
+
+	.view-brokers .views-row
+	{
+		position:relative;
+		float:left;
+		width:49%;
+		color:white;
+		text-shadow:1px 1px 2px black;
+
+		& > div 
+		{
+			padding-right:10px;
+			padding-bottom:10px;
+		}
+
+		.group
+		{
+			position:absolute;
+			top:50%;
+			margin-top:-18%;
+			width:100%;
+		}
+
+		.views-field-title,
+		.views-field-field-short-summary,
+		.views-field-path
+		{
+			width:36%;
+			max-width:250px;
+			margin-left:14%;
+
+			a 
+			{
+				color:white;
+				text-decoration:none;
+
+				&:hover
+				{
+					text-decoration:underline;
+				}
+			}
+		}
+
+		.views-field-title
+		{
+			@include helvetica;
+			font-size:18px;
+			margin-bottom:10px;
+		}
+
+		.views-field-field-short-summary
+		{
+			font-size:14px;
+			font-style:italic;
+			margin-bottom:10px;
+
+			p 
+			{
+				margin-bottom:0.8em;
+			}
+		}
+
+		.views-field-path
+		{
+			font-size:12px;
+			font-style:italic;
+		}
+
+		.views-field-field-image img
+		{
+			width:100%;
+			height:auto;
+			display:block;
+		}
+	}
+}
+
+
 
 
 
@@ -880,17 +1073,46 @@ form
 		margin-right:40px;
 	}
 
+	#block-system-main 
+	{
+		width:100%;
+	}
+
 	.region-header
 	{
 		right:-8px;
 		top:5px;
 	}
 
+	#widgets > div 
+	{
+		border-spacing:0;
+		margin-left:0;
+		margin-right:0;
+		margin-bottom:10px;
+	}
+
 	#widgets .block
 	{
-		margin:0 5% 20px 5% !important;
+		margin:10px 0 0 0 !important;
 		width:auto;
 		display:block;
+	}
+
+	.page-insurance-basics #block-system-main .views-row 
+	{
+		width:49%;
+
+		&.views-col-1,
+		&.views-col-2
+		{
+			margin-right:0;
+		}
+
+		&.views-row-odd 
+		{
+			margin-right:2%;
+		}
 	}
 }
 
@@ -965,6 +1187,8 @@ form
 	#page-wrapper
 	{
 		margin-left:0;
+		background-color:rgba(255,255,255,0.6);
+		min-height:100%;
 	}
 
 	#page-wrapper #page 
@@ -982,6 +1206,9 @@ form
 	#block-system-main
 	{
 		width:auto;
+		min-width:initial;
+		background-color:transparent;
+		box-shadow:none;
 	}
 }
 
@@ -1042,6 +1269,21 @@ form
 			overflow:hidden;
 		}
 	}
+
+	.page-insurance-basics #block-system-main .views-row 
+	{
+		width:auto;
+
+		& > div 
+		{
+			height:auto;
+		}
+
+		&.views-row-odd 
+		{
+			margin-right:0;
+		}
+	}
 }
 
 
@@ -1062,5 +1304,5 @@ body
 {
 	overflow:hidden;
 	position:fixed;
-	z-index:-1;
+	z-index:-2;
 }

@@ -138,7 +138,6 @@
 
     <div id="widgets"><div>
       <?php print render($page['widgets']); ?>
-      <div class="clear"></div>
     </div></div>
     <div class="clear"></div>
 
