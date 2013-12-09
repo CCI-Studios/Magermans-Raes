@@ -56,6 +56,16 @@ tbody
 	border-top:0;
 }
 
+a.button
+{
+	@include helvetica;
+	color:#168ec9;
+	text-decoration:none;
+	font-size:24px;
+	display:block;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.2);
+}
+
 .clear
 {
 	clear:both;
@@ -737,6 +747,7 @@ h1#page-title
 		a 
 		{
 			text-decoration:none;
+			display:block;
 		}
 	}
 
@@ -966,7 +977,6 @@ form
 			@include helvetica;
 			font-size:24px;
 			margin:0 0 10px 0;
-			padding:94px 0 10px 0;
 			border-bottom:1px solid #8fc6e2;
 			background-repeat:no-repeat;
 			background-position:center top;
@@ -974,6 +984,8 @@ form
 			a 
 			{
 				text-decoration:none;
+				padding:94px 0 10px 0;
+				display:block;
 			}
 		}
 	}
@@ -985,11 +997,11 @@ form
 	min-width:initial;
 	background-color:transparent;
 	box-shadow:none;
-
+	padding:0;
+	margin-bottom:0;
 
 	.view-brokers .views-row
 	{
-		position:relative;
 		float:left;
 		width:49%;
 		color:white;
@@ -997,16 +1009,30 @@ form
 
 		& > div 
 		{
-			padding-right:10px;
-			padding-bottom:10px;
+			margin-right:10px;
+			margin-bottom:10px;
+			position:relative;
 		}
 
 		.group
 		{
 			position:absolute;
-			top:50%;
-			margin-top:-18%;
+			top:0;
 			width:100%;
+			height:100%;
+
+			& > div 
+			{
+				display:table;
+				height:100%;
+				width:100%;
+
+				& > div 
+				{
+					display:table-cell;
+					vertical-align:middle;
+				}
+			}
 		}
 
 		.views-field-title,
@@ -1015,7 +1041,9 @@ form
 		{
 			width:36%;
 			max-width:250px;
+			min-width:125px;
 			margin-left:14%;
+			font-weight:bold;
 
 			a 
 			{
@@ -1059,10 +1087,32 @@ form
 			width:100%;
 			height:auto;
 			display:block;
+			box-shadow:0 0 15px rgba(0, 8, 49, 0.3);
 		}
 	}
 }
 
+.node-mr-broker
+{
+	.field-name-back-to-brokers
+	{
+		p 
+		{
+			margin-bottom:0!important;
+			margin-top:12px;
+		}
+
+		a 
+		{
+			@include helvetica;
+			color:#168ec9;
+			text-decoration:none;
+			font-size:24px;
+			display:block;
+			text-shadow:1px 1px 1px rgba(0,0,0,0.2);
+		}
+	}
+}
 
 
 
@@ -1121,6 +1171,20 @@ form
 	}
 }
 
+
+@media screen and (max-width:950px)
+{
+	.page-brokers #block-system-main .view-brokers .views-row
+	{
+		float:none;
+		width:auto;
+
+		& > div 
+		{
+			margin-right:0;
+		}
+	}
+}
 
 
 @media screen and (max-width:720px)

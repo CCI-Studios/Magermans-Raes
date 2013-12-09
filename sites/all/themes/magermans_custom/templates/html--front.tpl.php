@@ -43,7 +43,6 @@
  * @ingroup themeable
  */
 $title = $head_title_array['name'] . ' | ' . variable_get('site_slogan', '');
-if ($head_title_array['title']) $title = $head_title_array['title'] . ' | ' . $title;
 
 ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">

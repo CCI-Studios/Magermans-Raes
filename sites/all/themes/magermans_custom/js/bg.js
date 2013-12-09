@@ -15,7 +15,7 @@
 		{
 			url += "auto.jpg";
 		}
-		else if ($body.hasClass("commercial"))
+		else if ($body.hasClass("commercial-insurance"))
 		{
 			url += "commercial.jpg";
 		}
