@@ -633,9 +633,14 @@ h1#page-title
 	ul, ol 
 	{
 		margin:0.8em 0 0.8em 20px;
+
+		ul, ol 
+		{
+			margin-top:0;
+		}
 	}
 
-	.field-name-body .field-item :last-child
+	.field-name-body .field-item > :last-child
 	{
 		margin-bottom:0;
 	}
@@ -988,6 +993,51 @@ form
 				display:block;
 			}
 		}
+
+		&.nid-55 h2
+		{
+			background-image:url(../images/resource-icons/auto.png);
+		}
+		&.nid-56 h2
+		{
+			background-image:url(../images/resource-icons/commercial.png);
+		}
+		&.nid-52 h2
+		{
+			background-image:url(../images/resource-icons/rights.png);
+		}
+		&.nid-57 h2
+		{
+			background-image:url(../images/resource-icons/documents.png);
+		}
+		&.nid-53 h2
+		{
+			background-image:url(../images/resource-icons/general.png);
+		}
+		&.nid-59 h2
+		{
+			background-image:url(../images/resource-icons/glossary.png);
+		}
+		&.nid-54 h2
+		{
+			background-image:url(../images/resource-icons/home.png);
+		}
+		&.nid-58 h2
+		{
+			background-image:url(../images/resource-icons/tips.png);
+		}
+		&.nid-51 h2
+		{
+			background-image:url(../images/resource-icons/broker-advantage.png);
+		}
+		&.nid-60 h2
+		{
+			background-image:url(../images/resource-icons/weblinks.png);
+		}
+		&.nid-50 h2
+		{
+			background-image:url(../images/resource-icons/broker.png);
+		}
 	}
 }
 
@@ -1092,28 +1142,15 @@ form
 	}
 }
 
-.node-mr-broker
+.field-name-back-to-brokers,
+.field-name-back-to-insurance-basics
 {
-	.field-name-back-to-brokers
+	p 
 	{
-		p 
-		{
-			margin-bottom:0!important;
-			margin-top:12px;
-		}
-
-		a 
-		{
-			@include helvetica;
-			color:#168ec9;
-			text-decoration:none;
-			font-size:24px;
-			display:block;
-			text-shadow:1px 1px 1px rgba(0,0,0,0.2);
-		}
+		margin-bottom:0!important;
+		margin-top:12px;
 	}
 }
-
 
 
 

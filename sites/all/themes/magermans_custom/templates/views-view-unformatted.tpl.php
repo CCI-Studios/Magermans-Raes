@@ -13,8 +13,9 @@
 <?php foreach ($rows as $id => $row): ?>
   <?php
   $col = $id%3 + 1;
+  $row_classes = $classes_array[$id] . ' nid-' . $view->result[$id]->nid .' views-col-' . $col;
   ?>
-  <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .' views-col-' . $col . '"';  } ?>><div>
+  <div<?php if ($classes_array[$id]) { print ' class="' . $row_classes . '"';  } ?>><div>
     <?php print $row; ?>
   </div></div>
 <?php endforeach; ?>
