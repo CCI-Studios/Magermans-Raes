@@ -11,9 +11,17 @@ var broker_timer;
 		$(".arrow-left").click(clickPreviousBroker);
 		$(".arrow-right").click(clickNextBroker);
 
-		broker_max = $("#block-views-brokers-block .views-row").length - 2;
+		var $rows = $("#block-views-brokers-block .views-row");
 
-		broker_timer = setInterval(brokerTimerNext, 4000);
+		broker_max = $rows.length;
+
+		var $first = $($rows.get(0)).clone();
+		var $second = $($rows.get(1)).clone();
+		$("#block-views-brokers-block .view-content")
+		.append($first)
+		.append($second);
+
+		broker_timer = setInterval(brokerTimerNext, 5000);
 
 		setTimeout(brokersLayout, 300);
 		$(window).resize(brokersLayout);
@@ -67,11 +75,40 @@ function moveBrokers()
 	}(jQuery));
 }
 
+function jumpToEndOfBrokers()
+{
+	(function($) {
+		var x = $("#block-views-brokers-block .views-row").length-2;
+		var left = "-"+(x*50)+"%";
+		if ($(window).width() < 1000)
+		{
+			left = "-"+(x*100)+"%";
+		}
+		$("#block-views-brokers-block .view-content").css({"left":left});
+	}(jQuery));
+}
+
+function jumpToBeginningOfBrokers()
+{
+	(function($) {
+		var x = broker_min;
+		var left = "-"+(x*50)+"%";
+		if ($(window).width() < 1000)
+		{
+			left = "-"+(x*100)+"%";
+		}
+		$("#block-views-brokers-block .view-content").css({"left":left});
+	}(jQuery));
+}
+
 function previousBroker()
 {
 	broker_x--;
 	if (broker_x < broker_min)
-		broker_x = broker_max;
+	{
+		jumpToEndOfBrokers();
+		broker_x = broker_max-1;
+	}
 
 	moveBrokers();
 }
@@ -80,7 +117,10 @@ function nextBroker()
 {
 	broker_x++;
 	if (broker_x > broker_max)
-		broker_x = broker_min;
+	{
+		jumpToBeginningOfBrokers();
+		broker_x = broker_min+1;
+	}
 
 	moveBrokers();
 }
