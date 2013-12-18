@@ -6,6 +6,7 @@ scripts[] = js/bg.js
 scripts[] = js/menu.js
 scripts[] = js/menu-button.js
 scripts[] = js/brokers-widget.js
+scripts[] = js/validate-form.js
 
 stylesheets[all][] = stylesheets/screen.css
 
