@@ -6,6 +6,11 @@
 			.parent()
 			.appendTo("#block-system-main-menu .content > ul");
 
+		$("#block-system-main-menu .content > ul > li").click(function(){
+			$("#block-system-main-menu .content > ul > li").not(this).removeClass("submenu-open");
+			$(this).toggleClass("submenu-open");
+		});
+
 		resizeMenu();
 		$(window).on('resize scroll', function(){resizeMenu();});
 	});
@@ -42,13 +47,9 @@ function resizeMenu(defaultHeight)
 
 
 		$("#block-system-main-menu .content > ul > li").each(function(index){
-			$(this).find("> div > a").css({"padding-top":0, "padding-bottom":0});
-			var padding = ($(this).height() - $(this).find("> div > a").height())/2;
-			if ($(this).hasClass("expanded"))
-			{
-				padding = minLIHeight/2;
-			}
-			$(this).find("> div > a").css({"padding-top":padding+"px", "padding-bottom":padding+"px"});
+			$(this).find("> div > a, > div > span").css({"padding-top":0, "padding-bottom":0});
+			var padding = ($(this).height() - $(this).find("> div > a, > div > span").height())/2;
+			$(this).find("> div > a, > div > span").css({"padding-top":padding+"px", "padding-bottom":padding+"px"});
 		});
 	}(jQuery));
 }

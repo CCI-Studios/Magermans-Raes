@@ -95,6 +95,8 @@
 
     <?php print $messages; ?>
 
+    
+
     <div id="main-wrapper"><div id="main" class="">
 
       <div id="content" class="column"><div class="section">
@@ -105,21 +107,18 @@
         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
         <?php print render($page['help']); ?>
         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+
+        <div id="widgets"><div>
+          <?php print render($page['widgets']); ?>
+        </div></div>
+        <div class="clear"></div>
+        
         <?php print render($page['content']); ?>
       </div></div> <!-- /.section, /#content -->
 
-      <?php if ($page['sidebar_first']): ?>
-        <div id="sidebar-first" class="column sidebar"><div class="section">
-          <?php print render($page['sidebar_first']); ?>
-        </div></div> <!-- /.section, /#sidebar-first -->
-      <?php endif; ?>
-
     </div></div> <!-- /#main, /#main-wrapper -->
 
-    <div id="widgets"><div>
-      <?php print render($page['widgets']); ?>
-    </div></div>
-    <div class="clear"></div>
+    
 
   </div>
 

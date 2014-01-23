@@ -71,7 +71,7 @@ function moveBrokers()
 		{
 			left = "-"+(broker_x*100)+"%";
 		}
-		$("#block-views-brokers-block .view-content").animate({"left":left});
+		$("#block-views-brokers-block .view-content").stop(false, false).animate({"left":left});
 	}(jQuery));
 }
 

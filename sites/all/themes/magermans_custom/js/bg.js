@@ -1,3 +1,32 @@
+ //polyfill for naturalWidth in IE8
+ (function($){
+    var
+    props = ['Width', 'Height'],
+    prop;
+
+    while (prop = props.pop()) {
+    (function (natural, prop) {
+      $.fn[natural] = (natural in new Image()) ? 
+      function () {
+      return this[0][natural];
+      } : 
+      function () {
+      var 
+      node = this[0],
+      img,
+      value;
+
+      if (node.tagName.toLowerCase() === 'img') {
+        img = new Image();
+        img.src = node.src,
+        value = img[prop];
+      }
+      return value;
+      };
+    }('natural' + prop, prop.toLowerCase()));
+    }
+  }(jQuery));
+
 (function($) {
 	$(function(){
 		var $body = $("body");
@@ -101,7 +130,13 @@
 		}
 		$("#bg").load(bgLayout).attr("src", url);
 
-		$(window).resize(bgLayout);
+		$(window).on("resize scroll", bgLayout);
+
+		if (navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i))
+		{
+			//if iOS7, then fix the bg every second. the browser does not fire the events properly
+			setInterval(bgLayout, 1000);
+		}
 	});
 }(jQuery));
 
@@ -110,16 +145,14 @@ function bgLayout()
 	(function($) {
 		var $img = $("#bg");
 		var pageWidth = $("#page-wrapper").width();
-		var pageHeight = $(window).height();
+		var pageHeight = window.innerHeight ? window.innerHeight : $(window).height();
 
 		$("#bg-wrapper").css({
 			width:pageWidth+"px", 
-			height:pageHeight+"px",
-			overflow:"visible"
+			height:pageHeight+"px"
 		});
-
-		$img.css({"width":pageWidth+"px", "height":"auto"});
-		if ($img.height() < pageHeight)
+		
+		if ($img.naturalHeight() * pageWidth / $img.naturalWidth() < pageHeight)
 		{
 			$img.css({
 				"height":pageHeight, 
@@ -133,6 +166,5 @@ function bgLayout()
 				"width":"100%"
 			});
 		}
-		$("#bg-wrapper").css("overflow", "hidden");
 	}(jQuery));
 }
