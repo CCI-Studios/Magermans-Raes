@@ -124,6 +124,82 @@
 		{
 			url += "drobertson.jpg";
 		}
+		else if ($body.hasClass("kris-faubert"))
+		{
+			url += "kfaubert.jpg";
+		}
+		else if ($body.hasClass("cheri-paisley"))
+		{
+			url += "cpaisley.jpg";
+		}
+		else if ($body.hasClass("stephanie-bacon"))
+		{
+			url += "sbacon.jpg";
+		}
+		else if ($body.hasClass("paula-beaton"))
+		{
+			url += "pbeaton.jpg";
+		}
+		else if ($body.hasClass("lily-cocozzoli"))
+		{
+			url += "lcocozzoli.jpg";
+		}
+		else if ($body.hasClass("chatham1"))
+		{
+			url += "chatham1.jpg";
+		}
+		else if ($body.hasClass("chatham2"))
+		{
+			url += "chatham2.jpg";
+		}
+		else if ($body.hasClass("chatham3"))
+		{
+			url += "chatham3.jpg";
+		}
+		else if ($body.hasClass("chatham4"))
+		{
+			url += "chatham4.jpg";
+		}
+		else if ($body.hasClass("chatham5"))
+		{
+			url += "chatham5.jpg";
+		}
+		else if ($body.hasClass("chatham6"))
+		{
+			url += "chatham6.jpg";
+		}
+		else if ($body.hasClass("chatham7"))
+		{
+			url += "chatham7.jpg";
+		}
+		else if ($body.hasClass("chatham8"))
+		{
+			url += "chatham8.jpg";
+		}
+		else if ($body.hasClass("chatham9"))
+		{
+			url += "chatham9.jpg";
+		}
+		else if ($body.hasClass("chatham10"))
+		{
+			url += "chatham10.jpg";
+		}
+		else if ($body.hasClass("chris"))
+		{
+			url += "chris.jpg";
+		}
+		else if ($body.hasClass("ginny"))
+		{
+			url += "ginny.jpg";
+		}
+		else if ($body.hasClass("petrolia1"))
+		{
+			url += "petrolia1.jpg";
+		}
+		else if ($body.hasClass("node-type-mr-broker"))
+		{
+			url += "placeholder-bg.jpg";
+		}
 		else
 		{
 			url += "front.jpg";
