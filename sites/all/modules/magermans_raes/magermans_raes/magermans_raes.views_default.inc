@@ -22,7 +22,7 @@ function magermans_raes_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Brokers';
+  $handler->display->display_options['title'] = 'Our Brokers';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -43,6 +43,22 @@ function magermans_raes_views_default_views() {
   $handler->display->display_options['footer']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['footer']['area_text_custom']['label'] = 'Arrow Right';
   $handler->display->display_options['footer']['area_text_custom']['content'] = '<img src="/sites/all/themes/magermans_custom/images/arrow-right.png" alt="Next Broker" class="arrow-right" />';
+  /* Relationship: Content: Taxonomy terms on node */
+  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
+  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
+    'location' => 'location',
+    'tags' => 0,
+  );
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'brokers' => 'brokers',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -95,6 +111,14 @@ function magermans_raes_views_default_views() {
 </div></div></div>';
   $handler->display->display_options['fields']['nothing']['element_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Sort criterion: Global: Random */
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';
@@ -118,6 +142,12 @@ function magermans_raes_views_default_views() {
   $handler->display->display_options['filters']['promote']['table'] = 'node';
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -159,16 +189,84 @@ function magermans_raes_views_default_views() {
     'image_style' => 'brokers_widget_background',
     'image_link' => '',
   );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'mr_broker' => 'mr_broker',
+  );
+  /* Filter criterion: Content: Promoted to front page */
+  $handler->display->display_options['filters']['promote']['id'] = 'promote';
+  $handler->display->display_options['filters']['promote']['table'] = 'node';
+  $handler->display->display_options['filters']['promote']['field'] = 'promote';
+  $handler->display->display_options['filters']['promote']['value'] = '1';
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'name',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['relationship'] = 'term_node_tid';
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'mr_broker' => 'mr_broker',
+  );
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
   $handler->display->display_options['path'] = 'brokers';
   $export['brokers'] = $view;
 
@@ -193,6 +291,16 @@ function magermans_raes_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = TRUE;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'insurance_basics' => 'insurance_basics',
+    'brokers' => 0,
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -212,10 +320,11 @@ function magermans_raes_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '120',
   );
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -223,12 +332,18 @@ function magermans_raes_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'resources_page' => 'resources_page',
+    'insurance_basics_page' => 'insurance_basics_page',
   );
 
   /* Display: Page */
