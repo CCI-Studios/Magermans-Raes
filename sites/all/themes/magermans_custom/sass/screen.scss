@@ -16,7 +16,7 @@ $century_gothic: "ff-basic-gothic-web-pro", sans-serif;
 @mixin century_gothic() {
 	font-family:$century_gothic;
 	letter-spacing:-0.6px;
-	font-weight:400;
+	font-weight:500;
 }
 
 
@@ -220,7 +220,7 @@ a#logo img
 				left:100%;
 				z-index:100;
 				padding:15px 0;
-				min-width:170px;
+				min-width:180px;
 
 				li 
 				{

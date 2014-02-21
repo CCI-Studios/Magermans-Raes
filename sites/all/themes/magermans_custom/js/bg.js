@@ -144,55 +144,55 @@
 		{
 			url += "lcocozzoli.jpg";
 		}
-		else if ($body.hasClass("chatham1"))
+		else if ($body.hasClass("mark-tourlouse"))
 		{
 			url += "chatham1.jpg";
 		}
-		else if ($body.hasClass("chatham2"))
+		else if ($body.hasClass("melissa-st-pierre"))
 		{
 			url += "chatham2.jpg";
 		}
-		else if ($body.hasClass("chatham3"))
+		else if ($body.hasClass("bernice-st-pierre"))
 		{
 			url += "chatham3.jpg";
 		}
-		else if ($body.hasClass("chatham4"))
+		else if ($body.hasClass("don-ricica"))
 		{
 			url += "chatham4.jpg";
 		}
-		else if ($body.hasClass("chatham5"))
+		else if ($body.hasClass("lori-mcdonnell"))
 		{
 			url += "chatham5.jpg";
 		}
-		else if ($body.hasClass("chatham6"))
+		else if ($body.hasClass("taryn-leveille"))
 		{
 			url += "chatham6.jpg";
 		}
-		else if ($body.hasClass("chatham7"))
+		else if ($body.hasClass("karri-hyatt"))
 		{
 			url += "chatham7.jpg";
 		}
-		else if ($body.hasClass("chatham8"))
+		else if ($body.hasClass("giselle-grant"))
 		{
 			url += "chatham8.jpg";
 		}
-		else if ($body.hasClass("chatham9"))
+		else if ($body.hasClass("kevin-capeling"))
 		{
 			url += "chatham9.jpg";
 		}
-		else if ($body.hasClass("chatham10"))
+		else if ($body.hasClass("karen-brackett"))
 		{
 			url += "chatham10.jpg";
 		}
-		else if ($body.hasClass("chris"))
+		else if ($body.hasClass("chris-sauve"))
 		{
 			url += "chris.jpg";
 		}
-		else if ($body.hasClass("ginny"))
+		else if ($body.hasClass("ginny-williams"))
 		{
 			url += "ginny.jpg";
 		}
-		else if ($body.hasClass("petrolia1"))
+		else if ($body.hasClass("teryl-wallace"))
 		{
 			url += "petrolia1.jpg";
 		}
