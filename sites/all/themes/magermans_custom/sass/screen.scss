@@ -995,7 +995,7 @@ form
 			a 
 			{
 				text-decoration:none;
-				padding:94px 0 10px 0;
+				padding:78px 0 10px 0;
 				display:block;
 			}
 		}
@@ -1279,6 +1279,15 @@ form
 		width:auto;
 		min-width:initial;
 		box-shadow:none;
+	}
+}
+
+@media screen and (max-width:700px)
+{
+	.page-insurance-basics #block-system-main .view-resources-list .views-row
+	{
+		margin-right:0;
+		width:100%;
 	}
 }
 
