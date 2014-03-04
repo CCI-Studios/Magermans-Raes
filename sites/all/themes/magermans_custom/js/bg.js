@@ -32,9 +32,9 @@
 		var $body = $("body");
 		var prefix = "/sites/all/themes/magermans_custom/images/backgrounds/";
 		var url = prefix;
-		if ($body.hasClass("front"))
+		if ($body.hasClass("home-insurance"))
 		{
-			url += "front.jpg";
+			url += "home.jpg";
 		}
 		else if ($body.hasClass("about-magermans-raes"))
 		{
@@ -195,6 +195,10 @@
 		else if ($body.hasClass("teryl-wallace"))
 		{
 			url += "petrolia1.jpg";
+		}
+		else if ($body.hasClass("paul-crawford"))
+		{
+			url += "pcrawford.jpg";
 		}
 		else if ($body.hasClass("node-type-mr-broker"))
 		{
