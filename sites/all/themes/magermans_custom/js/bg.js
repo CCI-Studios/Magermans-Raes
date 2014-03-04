@@ -174,7 +174,7 @@
 		}
 		else if ($body.hasClass("giselle-grant"))
 		{
-			url += "chatham8.jpg";
+			url += "giselle.jpg";
 		}
 		else if ($body.hasClass("kevin-capeling"))
 		{
