@@ -129,7 +129,11 @@
   <div id="footer"><div class="section">
     <?php print render($page['footer']); ?>
     <div id="menu-footer">
-      <div id="copyright">&copy; <?php print date('Y'); ?> Magermans &amp; Raes</div>
+      <div id="copyright">
+        &copy; <?php print date('Y'); ?> Magermans &amp; Raes<br />
+        <a href="/privacy-policy">Privacy Policy</a><br />
+        <a href="/limitation-of-liability">Limitation of Liability</a>
+      </div>
       <div id="site-by-cci">Site by <a href="http://ccistudios.com" target="_blank">CCI Studios</a></div>
     </div>
   </div></div> <!-- /.section, /#footer -->
