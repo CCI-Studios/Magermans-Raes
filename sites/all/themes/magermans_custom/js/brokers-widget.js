@@ -5,7 +5,6 @@ var broker_timer;
 
 (function($) {
 	$(function(){
-		brokersLayout();
 		$(window).resize(brokersLayout);
 
 		$(".arrow-left").click(clickPreviousBroker);
@@ -23,7 +22,7 @@ var broker_timer;
 
 		broker_timer = setInterval(brokerTimerNext, 5000);
 
-		setTimeout(brokersLayout, 300);
+		setTimeout(brokersLayout, 50);
 		$(window).resize(brokersLayout);
 	});
 }(jQuery));
@@ -45,8 +44,8 @@ function brokersLayout()
 			var imgheight = $(this).find(".views-field-field-image img").height();
 			if (imgheight <= 1)
 			{
-				setTimeout(brokersLayout, 10);
-				return;
+				setTimeout(brokersLayout, 50);
+				return false;
 			}
 			var textheight = $(this).height();
 			var padding = (imgheight - textheight)/2;
