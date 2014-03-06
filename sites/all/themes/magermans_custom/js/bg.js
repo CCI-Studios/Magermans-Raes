@@ -196,6 +196,10 @@
 		{
 			url += "petrolia1.jpg";
 		}
+		else if ($body.hasClass("teryl-wallace-0"))
+		{
+			url += "petrolia1.jpg";
+		}
 		else if ($body.hasClass("paul-crawford"))
 		{
 			url += "pcrawford.jpg";
