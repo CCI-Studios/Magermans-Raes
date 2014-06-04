@@ -6,6 +6,7 @@ scripts[] = js/bg.js
 scripts[] = js/menu.js
 scripts[] = js/menu-button.js
 scripts[] = js/brokers-widget.js
+scripts[] = js/testimonials.js
 scripts[] = js/validate-form.js
 
 stylesheets[all][] = stylesheets/screen.css
@@ -18,4 +19,3 @@ regions[sidebar_first] = Sidebar
 regions[widgets] = Widgets
 regions[widgets2] = Widgets2
 regions[footer] = Footer
-

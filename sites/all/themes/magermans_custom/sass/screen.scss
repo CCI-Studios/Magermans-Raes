@@ -1177,6 +1177,127 @@ form
 	}
 }
 
+#block-views-testimonials-block
+{
+	background: white;
+	clear: both;
+	height:110px;
+	padding:30px 120px;
+	position: relative;
+	top:0;
+	box-shadow:0 0 10px rgba(0,0,0,0.5);
+
+	& > div
+	{
+		height:100%;
+
+		& > div
+		{
+			width:100%;
+			height: 100%;
+			max-width:680px;
+			margin:0 auto;
+
+			& > div
+			{
+				position: relative;
+				height: 100%;
+
+				&:before
+				{
+					content:"";
+					display: block;
+					position: absolute;
+					left:-50px;
+					top:10px;
+					width: 31px;
+					height: 30px;
+					margin-top: -15px;
+					background:url(../images/quote-left.png) no-repeat;
+				}
+				&:after
+				{
+					content:"";
+					display: block;
+					position: absolute;
+					right:-50px;
+					bottom:10px;
+					width: 31px;
+					height: 30px;
+					background:url(../images/quote-right.png) no-repeat;
+				}
+			}
+		}
+	}
+
+	.views-row
+	{
+		position:absolute;
+		top:0;
+		left:0;
+		display: none;
+		text-align: center;
+		height:100%;
+		width: 100%;
+
+		.views-field-body
+		{
+			height:110px;
+			width: 100%;
+			display:table;
+			font-size:1.25em;
+			line-height:100%;
+			font-weight:300;
+
+			& > div
+			{
+				display:table-cell;
+				vertical-align: middle;
+			}
+		}
+
+		&.views-row-first
+		{
+			display: block;
+		}
+	}
+
+	a#previous-testimonial
+	{
+		display: block;
+		position: absolute;
+		left:-110px;
+		top:50%;
+		width:23px;
+		height: 49px;
+		margin-top:-25px;
+		font-size:0;
+		color:transparent;
+		background:url(../images/arrow-left-blue.png) no-repeat;
+	}
+	a#next-testimonial
+	{
+		display: block;
+		position: absolute;
+		right:-110px;
+		top:50%;
+		width:23px;
+		height: 49px;
+		margin-top:-25px;
+		font-size:0;
+		color:transparent;
+		background:url(../images/arrow-right-blue.png) no-repeat;
+	}
+}
+body.testimonials-bottom
+{
+	height: 100%;
+
+	#page-wrapper
+	{
+		height: 100%;
+	}
+}
 
 
 
@@ -1229,6 +1350,28 @@ form
 		&.views-row-odd
 		{
 			margin-right:2%;
+		}
+	}
+
+	#block-views-testimonials-block
+	{
+		padding-left:90px;
+		padding-right:90px;
+		height: 150px;
+
+		.views-row .views-field-body
+		{
+			font-size:1.1em;
+			height: 150px;
+		}
+
+		a#previous-testimonial
+		{
+			left:-85px;
+		}
+		a#next-testimonial
+		{
+			right:-85px;
 		}
 	}
 }
@@ -1454,5 +1597,47 @@ form
 	#widgets2 #block-block-6
 	{
 		font-size:20px;
+	}
+
+
+
+	#block-views-testimonials-block
+	{
+		padding-left:50px;
+		padding-right:50px;
+		height: 180px;
+
+		& > div > div > div
+		{
+			&:before,
+			&:after
+			{
+				width:20px;
+				background-size:contain;
+			}
+			&:before
+			{
+				left:-25px;
+			}
+			&:after
+			{
+				right:-25px;
+			}
+		}
+
+		.views-row .views-field-body
+		{
+			font-size:1em;
+			height: 180px;
+		}
+
+		a#previous-testimonial
+		{
+			left:-45px;
+		}
+		a#next-testimonial
+		{
+			right:-45px;
+		}
 	}
 }
