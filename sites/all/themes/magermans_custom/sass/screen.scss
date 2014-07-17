@@ -1288,6 +1288,14 @@ form
 		color:transparent;
 		background:url(../images/arrow-right-blue.png) no-repeat;
 	}
+
+	#testimonials-disclaimer
+	{
+		position: absolute;
+		right: -80px;
+		bottom: -10px;
+		font-size:0.75em;
+	}
 }
 body.testimonials-bottom
 {
@@ -1638,6 +1646,10 @@ body.testimonials-bottom
 		a#next-testimonial
 		{
 			right:-45px;
+		}
+		#testimonials-disclaimer
+		{
+			right: -20px;
 		}
 	}
 }
