@@ -1,46 +1,48 @@
-var broker_x = 0;
-var broker_min = 0;
-var broker_max = 0;
-var broker_timer;
-
 (function($) {
+	var active = 0;
+	var min = 0;
+	var max = 0;
+	var timer;
+
 	$(function(){
-		$(window).resize(brokersLayout);
+		$(".arrow-left").click(clickPrevious);
+		$(".arrow-right").click(clickNext);
 
-		$(".arrow-left").click(clickPreviousBroker);
-		$(".arrow-right").click(clickNextBroker);
+		max = rows().length;
 
-		var $rows = $("#block-views-brokers-block .views-row");
+		var $first = rows().eq(0).clone();
+		var $second = rows().eq(1).clone();
+		container().append($first).append($second);
 
-		broker_max = $rows.length;
+		start();
 
-		var $first = $($rows.get(0)).clone();
-		var $second = $($rows.get(1)).clone();
-		$("#block-views-brokers-block .view-content")
-		.append($first)
-		.append($second);
-
-		broker_timer = setInterval(brokerTimerNext, 5000);
-
-		setTimeout(brokersLayout, 50);
-		$(window).resize(brokersLayout);
+		setTimeout(layout, 50);
+		$(window).resize(layout);
 	});
-}(jQuery));
 
-function brokersLayout()
-{
-	(function($) {
-		var numRows = $("#block-views-brokers-block .views-row").length;
-		var containerWidth = numRows * 50;
+	function start()
+	{
+		timer = setInterval(timerNext, 5000);
+	}
+
+	function container()
+	{
+		return $("#block-views-brokers-block .view-content");
+	}
+	function rows()
+	{
+		return container().find(".views-row");
+	}
+
+	function layout()
+	{
+		var numRows = rows().length;
+		var containerWidth = numRows * getRowWidth();
 		var rowWidth = 1/numRows*100;
-		if ($(window).width() < 1000)
-		{
-			containerWidth = numRows * 100;
-		}
-		$("#block-views-brokers-block .view-content").width(containerWidth+"%");
-		$("#block-views-brokers-block .views-row").width(rowWidth+"%");
+		container().width(containerWidth+"%");
+		rows().width(rowWidth+"%");
 
-		$("#block-views-brokers-block .views-row").each(function(){
+		rows().each(function(){
 			var imgheight = $(this).find(".views-field-field-image img").height();
 			if (imgheight <= 1)
 			{
@@ -59,85 +61,86 @@ function brokersLayout()
 			if (padding > 0)
 				$(this).css({"padding-top":paddingTop+"px", "padding-bottom":paddingBottom+"px"});
 		});
-	}(jQuery));
-}
-
-function moveBrokers()
-{
-	(function($) {
-		var left = "-"+(broker_x*50)+"%";
-		if ($(window).width() < 1000)
-		{
-			left = "-"+(broker_x*100)+"%";
-		}
-		$("#block-views-brokers-block .view-content").stop(false, false).animate({"left":left});
-	}(jQuery));
-}
-
-function jumpToEndOfBrokers()
-{
-	(function($) {
-		var x = $("#block-views-brokers-block .views-row").length-2;
-		var left = "-"+(x*50)+"%";
-		if ($(window).width() < 1000)
-		{
-			left = "-"+(x*100)+"%";
-		}
-		$("#block-views-brokers-block .view-content").css({"left":left});
-	}(jQuery));
-}
-
-function jumpToBeginningOfBrokers()
-{
-	(function($) {
-		var x = broker_min;
-		var left = "-"+(x*50)+"%";
-		if ($(window).width() < 1000)
-		{
-			left = "-"+(x*100)+"%";
-		}
-		$("#block-views-brokers-block .view-content").css({"left":left});
-	}(jQuery));
-}
-
-function previousBroker()
-{
-	broker_x--;
-	if (broker_x < broker_min)
-	{
-		jumpToEndOfBrokers();
-		broker_x = broker_max-1;
 	}
 
-	moveBrokers();
-}
-
-function nextBroker()
-{
-	broker_x++;
-	if (broker_x > broker_max)
+	function moveContainer()
 	{
-		jumpToBeginningOfBrokers();
-		broker_x = broker_min+1;
+		var left = "-" + (active*getRowWidth()) + "%";
+		container().stop(false, false).animate({"left":left});
+	}
+	function jumpToEnd()
+	{
+		var active = rows().length-2;
+		var left = "-" + (active*getRowWidth()) + "%";
+		container().css({"left":left});
+	}
+	function jumpToBeginning()
+	{
+		var active = min;
+		var left = "-" + (active*getRowWidth()) + "%";
+		container().css({"left":left});
+	}
+	function getRowWidth()
+	{
+		var rowsPerPage;
+		if (!isMobile())
+		{
+			rowsPerPage = 2;
+		}
+		else
+		{
+			rowsPerPage = 1;
+		}
+		return 100/rowsPerPage;
+	}
+	function isMobile()
+	{
+		return $(window).width() < 1000;
 	}
 
-	moveBrokers();
-}
+	function previous()
+	{
+		active--;
+		if (active < min)
+		{
+			jumpToEnd();
+			active = max-1;
+		}
+		moveContainer();
+	}
 
-function clickPreviousBroker()
-{
-	previousBroker();
-	clearInterval(broker_timer);
-}
+	function next()
+	{
+		active++;
+		if (active > max)
+		{
+			jumpToBeginning();
+			active = min+1;
+		}
+		moveContainer();
+	}
 
-function clickNextBroker()
-{
-	nextBroker();
-	clearInterval(broker_timer);
-}
+	function clickPrevious()
+	{
+		previous();
+		stop();
+	}
 
-function brokerTimerNext()
-{
-	nextBroker();
-	brokersLayout();
-}
+	function clickNext()
+	{
+		next();
+		stop();
+	}
+
+	function stop()
+	{
+		clearInterval(timer);
+	}
+
+	function timerNext()
+	{
+		next();
+		layout();
+	}
+
+}(jQuery));
