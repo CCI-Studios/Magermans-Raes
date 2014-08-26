@@ -8,6 +8,7 @@ scripts[] = js/menu-button.js
 scripts[] = js/brokers-widget.js
 scripts[] = js/testimonials.js
 scripts[] = js/validate-form.js
+scripts[] = js/date-reverse.js
 
 stylesheets[all][] = stylesheets/screen.css
 
