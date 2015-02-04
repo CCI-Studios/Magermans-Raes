@@ -204,6 +204,14 @@
 		{
 			url += "pcrawford.jpg";
 		}
+		else if ($body.hasClass("sally-darcy"))
+		{
+			url += "sdarcy.jpg";
+		}
+		else if ($body.hasClass("risa-andersen"))
+		{
+			url += "randersen.jpg";
+		}
 		else if ($body.hasClass("node-type-mr-broker"))
 		{
 			url += "placeholder-bg.jpg";
