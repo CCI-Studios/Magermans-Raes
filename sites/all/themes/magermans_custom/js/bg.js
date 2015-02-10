@@ -212,6 +212,10 @@
 		{
 			url += "randersen.jpg";
 		}
+		else if ($body.hasClass("dayna-deboer"))
+		{
+			url += "ddeboer.jpg";
+		}
 		else if ($body.hasClass("node-type-mr-broker"))
 		{
 			url += "placeholder-bg.jpg";
